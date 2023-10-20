@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:id']);
+Route::get('/admin/index', [RestaurantController::class, 'index'])->name('index');
+Route::get('admin/restaurants/form', [RestaurantController::class, 'create'])->name('restaurants.form');
+Route::get('/restaurants/show/{id}', [RestaurantController::class, 'show'])->name('restaurants.show');
+
+
+// Route::get('/restaurants/index', [RestaurantController::class, 'index'])->name('admin.restaurants.index');
+// Route::post('/restaurants/store', [RestaurantController::class, 'store'])->name('admin.restaurants.store');
+// Route::get('/restaurants/edit/{id}', [RestaurantController::class, 'edit'])->name('admin.restaurants.edit');
+// Route::put('/restaurants/show/{id}', [RestaurantController::class, 'update'])->name('admin.restaurants.update');
+// Route::get('/restaurants/form', [RestaurantController::class, 'create'])->name('admin.restaurants.form');
+
+
+
+require __DIR__ . '/auth.php';
