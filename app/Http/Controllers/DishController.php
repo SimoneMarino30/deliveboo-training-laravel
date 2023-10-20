@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException;
 
 class DishController extends Controller
 {
@@ -12,9 +14,15 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Restaurant $restaurant)
     {
-        //
+        // $restaurants = Dish::where('user_id', $restaurant->id)->orderBy('updated_at', 'DESC');
+        // $restaurant = 1;
+
+        // $restaurant = Restaurant::findOrFail($id);
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+        
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**

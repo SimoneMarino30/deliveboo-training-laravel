@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\DishController;
+use App\Models\Dish;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,9 @@ Route::resource('restaurants', RestaurantController::class)->parameters(['restau
 Route::get('/admin/index', [RestaurantController::class, 'index'])->name('index');
 Route::get('admin/restaurants/form', [RestaurantController::class, 'create'])->name('restaurants.form');
 Route::get('/restaurants/show/{id}', [RestaurantController::class, 'show'])->name('restaurants.show');
+
+Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:id']);
+Route::get('/admin/index/{restaurant}', [DishController::class, 'index'])->name('index');
 
 
 // Route::get('/restaurants/index', [RestaurantController::class, 'index'])->name('admin.restaurants.index');
