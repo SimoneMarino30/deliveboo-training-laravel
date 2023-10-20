@@ -10,12 +10,12 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
-      <th scope="col">Numero</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Minuti di cottura</th>
-      <th scope="col">Grammi</th>
-      <th scope="col">Actions</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Indirizzo</th>
+      <th scope="col">Partita iva</th>
+      <th scope="col">Foto</th>
+      <th scope="col">immagine</th>
+      <th scope="col">data creazione</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
