@@ -14,7 +14,7 @@
       <th scope="col">Partita iva</th>
       <th scope="col">Foto</th>
       <th scope="col">immagine</th>
-      <th scope="col">data creazione</th>
+      <th scope="col">data</th>
       <th scope="col"></th>
     </tr>
   </thead>
