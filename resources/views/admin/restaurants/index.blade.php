@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container pt-5">
+  @include('layouts.partials._session-message')
+</div>
+
 <table class="table">
   <thead>
     <tr>
