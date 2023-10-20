@@ -30,6 +30,10 @@
       <td>{{ $restaurant->created_at }}</td>
       <td>{{ $restaurant->updated_at }}</td>
       <td class="text-wrap">
+
+        <a class="" href="{{ route('index', ['restaurant' => $restaurant->id]) }}"><i class="fa-solid fa-plate-wheat"></i></a>
+
+        </a>
         {{-- Dettaglio --}}
         <a class="" href="{{ route('restaurants.show', $restaurant->id) }}"><i class="fa fa-eye"></i></a>
 
