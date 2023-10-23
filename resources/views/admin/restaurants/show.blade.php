@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
+@section('content')
   <section class="container text-center pt-4">
 
     <h1 class="my-4">Dettaglio - {{ $restaurant->id }}</h1>
@@ -17,9 +9,6 @@
       <a href="{{ route('restaurants.index') }}" class="btn btn-primary me-3">
         Torna alla lista
       </a>
-
-
-
 
       <div class="">
         <div class="">
@@ -31,7 +20,7 @@
         <div class="">
 
 
-          <div class="">
+          <div class="d-flex flex-wrap">
             <div class="">
               <p class="">
                 <strong>Camere:</strong>
@@ -71,9 +60,4 @@
                 <span>{{ $restaurant->updated_at }}</span>
               </p>
             </div>
-
-
-
-</body>
-
-</html>
+          @endsection

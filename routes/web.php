@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RestaurantController;
-use App\Http\Controllers\DishController;
-use App\Models\Dish;
+use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\TestController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,20 +32,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:id']);
-Route::get('/admin/index', [RestaurantController::class, 'index'])->name('index');
-Route::get('admin/restaurants/form', [RestaurantController::class, 'create'])->name('restaurants.form');
-Route::get('/restaurants/show/{id}', [RestaurantController::class, 'show'])->name('restaurants.show');
-
-Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:id']);
-Route::get('/admin/index/{restaurant}', [DishController::class, 'index'])->name('index');
+Route::resource('restaurants', RestaurantController::class);
 
 
-// Route::get('/restaurants/index', [RestaurantController::class, 'index'])->name('admin.restaurants.index');
-// Route::post('/restaurants/store', [RestaurantController::class, 'store'])->name('admin.restaurants.store');
-// Route::get('/restaurants/edit/{id}', [RestaurantController::class, 'edit'])->name('admin.restaurants.edit');
-// Route::put('/restaurants/show/{id}', [RestaurantController::class, 'update'])->name('admin.restaurants.update');
-// Route::get('/restaurants/form', [RestaurantController::class, 'create'])->name('admin.restaurants.form');
+Route::resource('/dishes', DishController::class);
+Route::get('/restaurants/{restaurant}/dishes', [DishController::class, 'index'])->name('dishes.index');
+
+Route::get('/test', [TestController::class, 'test']);
+//  la rotta /test viene gestita dal metodo test del TestController
 
 
 

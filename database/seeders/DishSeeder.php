@@ -16,24 +16,75 @@ class DishSeeder extends Seeder
     public function run()
     {
         $dishes = [
+            // ID 1
             [
                 'restaurant_id' => 1, // ID del ristorante associato
-                'name' => 'Pizza Margherita',
-                'description' => 'A classic Italian pizza with tomato, mozzarella, and basil.',
+                'name' => 'Margherita',
+                'description' => 'An irresistible symphony of colors, shapes, and aromas harmoniously blend on the crispy round surface. A culinary masterpiece that captivates both palate and heart.',
                 'ingredients' => 'Tomato, Mozzarella, Basil',
                 'visible' => 1,
-                'price' => 9.99,
+                'price' => 6.99,
             ],
             [
-                'restaurant_id' => 2, // ID del ristorante associato
-                'name' => 'Taco al Pastor',
-                'description' => 'A traditional Mexican street taco with marinated pork.',
-                'ingredients' => 'Marinated Pork, Pineapple, Onion, Cilantro',
+                'restaurant_id' => 1, // ID del ristorante associato
+                'name' => 'Bufalina',
+                'description' => 'A heavenly marriage of creamy buffalo mozzarella and a delicate dough, crowned with exquisite flavors. A gastronomic delight that will transport you to pizza paradise',
+                'ingredients' => 'Tomato, Buffalo Mozzarella, Basil',
+                'visible' => 1,
+                'price' => 8.99,
+            ],
+            [
+                'restaurant_id' => 1, // ID del ristorante associato
+                'name' => 'Napoli',
+                'description' => 'A symphony of flavors emerges from the combination of juicy San Marzano tomatoes, creamy Agerola fior di latte, and delicate anchovies. Napoli\'s culinary treasure, captured in every bite.',
+                'ingredients' => 'Tomato, Provola affumicata di Agerola, Basil, Origano', 'Alici',
+                'visible' => 1,
+                'price' => 11.99,
+            ],
+            // ID MEXICAN 2
+            [
+                'restaurant_id' => 2,
+                'name' => 'Burrito al Pastor',
+                'description' => 'A traditional Mexican street burrito with marinated beef.',
+                'ingredients' => 'Marinated beef, Rice, Onion, Cilantro',
                 'visible' => 1,
                 'price' => 3.50,
             ],
             [
-                'restaurant_id' => 3, // ID del ristorante associato
+                'restaurant_id' => 2,
+                'name' => 'Tacos al Carbon',
+                'description' => 'Delicious grilled meat tacos served with salsa.',
+                'ingredients' => 'Grilled meat, Tortillas, Salsa',
+                'visible' => 1,
+                'price' => 4.00,
+            ],
+            [
+                'restaurant_id' => 2,
+                'name' => 'Enchiladas Verdes',
+                'description' => 'Corn tortillas filled with chicken and covered with green salsa.',
+                'ingredients' => 'Chicken, Corn tortillas, Green salsa',
+                'visible' => 1,
+                'price' => 5.00,
+            ],
+            [
+                'restaurant_id' => 2,
+                'name' => 'Chiles Rellenos',
+                'description' => 'Poblano peppers stuffed with cheese and served with tomato sauce.',
+                'ingredients' => 'Poblano peppers, Cheese, Tomato sauce',
+                'visible' => 1,
+                'price' => 6.00,
+            ],
+            [
+                'restaurant_id' => 2,
+                'name' => 'Pozole',
+                'description' => 'Traditional soup made with hominy corn and meat, garnished with lettuce, chili peppers, radish, onion, lime and oregano.',
+                'ingredients' => 'Hominy corn, Meat, Lettuce, Chili peppers, Radish, Onion, Lime, Oregano',
+                'visible' => 1,
+                'price' => 7.00,
+            ],
+            // ID 3
+            [
+                'restaurant_id' => 3,
                 'name' => 'Sushi Roll',
                 'description' => 'Fresh and delicious sushi roll with assorted seafood.',
                 'ingredients' => 'Assorted Seafood, Rice, Seaweed',
