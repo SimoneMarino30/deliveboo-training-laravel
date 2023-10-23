@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Validator;
 
 class RestaurantManager
 {
-  public static function validation($data)
+  public static function validationRestaurant($data)
   {
-    $validator = Validator::make(
+    $validatorRestaurant = Validator::make(
       $data,
       [
         'name' => 'required|string|max:100',
@@ -35,6 +35,6 @@ class RestaurantManager
       ]
     )->validate();
 
-    return $validator;
+    return $validatorRestaurant;
   }
 }

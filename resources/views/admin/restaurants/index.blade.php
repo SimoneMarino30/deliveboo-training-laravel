@@ -32,7 +32,7 @@
           <td>{{ $restaurant->updated_at }}</td>
           <td class="text-wrap">
             {{-- piatti --}}
-            <a class="" href="{{ route('dishes.index', $restaurant) }}"><i class="fa-solid fa-plate-wheat"></i>
+            <a class="" href="{{ route('dishes.index', $restaurant->id) }}"><i class="fa-solid fa-plate-wheat"></i>
             </a>
             {{-- Dettaglio --}}
             <a class="" href="{{ route('restaurants.show', $restaurant->id) }}"><i class="fa fa-eye"></i></a>
@@ -51,7 +51,7 @@
     </tbody>
   </table>
   {{-- Crea --}}
-  <a href="{{ route('restaurants.create') }}" title="Modifica">
+  <a href="{{ route('restaurants.create') }}" title="Crea">
     crea
     <i class="bi bi-pencil-square me-2"></i>
   </a>

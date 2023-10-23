@@ -46,6 +46,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Salva</button>
+
     <a href="{{ route('restaurants.index') }}" class="btn btn-primary me-3">
       Torna alla lista
     </a>

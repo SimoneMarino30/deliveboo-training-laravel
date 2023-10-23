@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+  {{-- messaggio creazione o cancellazione --}}
+  @include('layouts.partials._session-message')
   <h1>benvenuto in dishes index</h1>
   {{-- back index --}}
   <button class="btn btn-warning my-5">
     <a class="" href="{{ route('restaurants.index') }}"><i class="fa-solid fa-arrow-left"></i>
     </a>
   </button>
+  {{-- creazione dish --}}
+  <a href="{{ route('dishes.create', $restaurant_id) }}" title="Crea un nuovo piatto">
+    crea
+    <i class="bi bi-pencil-square me-2"></i>
+  </a>
+  {{-- @dd($restaurant_id) --}}
   {{-- dish card --}}
   <div class="d-flex flex-wrap" style="border: 2px dashed orange;">
     @foreach ($dishes as $dish)

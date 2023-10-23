@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Services\Dishes\DishesManager;
 use Illuminate\Http\Request;
 
 
@@ -15,11 +16,12 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Restaurant $restaurant)
+    public function index($restaurant_id) // $restaurant è un parametro recuperato dall'URL e contiene l'ID del ristorante
     {
-        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
-
-        return view('admin.dishes.index', compact('dishes'));
+        // dd($restaurant_id);
+        $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
+        // dd($dishes);
+        return view('admin.dishes.index', compact('dishes', 'restaurant_id'));
     }
 
     /**
@@ -27,12 +29,14 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Dish $dish, $restaurant_id)
     {
-        // $isEdit = false;
-        // $dish = new Dish();
+        $isEdit = false;
+
+        $dish = new Dish();
+        // dd($restaurant);
         // dd($dish);
-        // return view('admin.restaurants.form', compact('dish', 'isEdit'));
+        return view('admin.dishes.form', compact('dish', 'isEdit', 'restaurant_id'));
     }
 
     /**
@@ -41,9 +45,18 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $restaurant_id)
     {
-        //
+        $data = DishesManager::validationDishes($request->all());
+        $dish = new Dish();
+
+        $dish->fill($data);
+
+        $dish->restaurant_id = $restaurant_id;
+        $dish->save();
+        // ! RIVEDERE VALIDATION DECIMAL PRICE
+
+        return redirect()->route('dishes.index', ['restaurant' => $restaurant_id])->with('message_content', 'Piatto creato con successo');
     }
 
     /**

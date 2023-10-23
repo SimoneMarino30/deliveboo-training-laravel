@@ -35,8 +35,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('restaurants', RestaurantController::class);
 
 
-Route::resource('/dishes', DishController::class);
-Route::get('/restaurants/{restaurant}/dishes', [DishController::class, 'index'])->name('dishes.index');
+Route::resource('/restaurants/{restaurant}/dishes', DishController::class);
 
 Route::get('/test', [TestController::class, 'test']);
 //  la rotta /test viene gestita dal metodo test del TestController

@@ -48,14 +48,14 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
 
-        $data = RestaurantManager::validation($request->all());
+        $data = RestaurantManager::validationRestaurant($request->all());
         $restaurant = new Restaurant;
         $restaurant->fill($data);
         $restaurant->user_id = auth()->user()->id;
 
         $restaurant->save();
 
-        return redirect()->route('restaurants.index')->with('message_content', 'Appartamento creato con successo');
+        return redirect()->route('restaurants.index')->with('message_content', 'Ristorante creato con successo');
     }
 
     /**
@@ -96,7 +96,7 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        $data = RestaurantManager::validation($request->all());
+        $data = RestaurantManager::validationRestaurant($request->all());
         $id = $restaurant->id;
         $restaurant->update($data);
         // dd($restaurant);
