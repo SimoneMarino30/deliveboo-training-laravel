@@ -8,8 +8,8 @@
     </h1>
 
     @if ($isEdit)
-      <form action="{{ route('dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST"
-        class="row gy-3 form-edit" data-modalita="edit">
+      <form action="{{ route('dishes.update', ['restaurant' => $restaurant_id, 'dish' => $dish]) }}"
+        enctype="multipart/form-data" method="POST" class="row gy-3 form-edit" data-modalita="edit">
         @method('PUT')
       @else
         <form action="{{ route('dishes.store', $restaurant_id) }}" enctype="multipart/form-data" method="POST"

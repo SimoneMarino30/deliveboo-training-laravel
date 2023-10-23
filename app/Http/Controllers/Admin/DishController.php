@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
-use App\Models\Restaurant;
 use App\Services\Dishes\DishesManager;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,6 @@ class DishController extends Controller
      */
     public function index($restaurant_id) // $restaurant è un parametro recuperato dall'URL e contiene l'ID del ristorante
     {
-        // dd($restaurant_id);
         $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
         // dd($dishes);
         return view('admin.dishes.index', compact('dishes', 'restaurant_id'));
@@ -54,7 +52,6 @@ class DishController extends Controller
 
         $dish->restaurant_id = $restaurant_id;
         $dish->save();
-        // ! RIVEDERE VALIDATION DECIMAL PRICE
 
         return redirect()->route('dishes.index', ['restaurant' => $restaurant_id])->with('message_content', 'Piatto creato con successo');
     }
@@ -76,9 +73,13 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit($restaurant_id, Dish $dish)
     {
-        //
+        $isEdit = true;
+
+        // $dish_id = $dish->id;
+        // dd($dish);
+        return view('admin.dishes.form', compact('isEdit', 'restaurant_id', 'dish'));
     }
 
     /**

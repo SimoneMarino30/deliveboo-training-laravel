@@ -32,7 +32,12 @@
           <li class="list-group-item">{{ $dish->visible }}</li>
         </ul>
         <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
+          {{-- edit dish --}}
+          <a href="{{ route('dishes.edit', ['restaurant' => $restaurant_id, 'dish' => $dish->id]) }}"
+            title="Modifica un piatto">
+            MODIFICA
+            <i class="bi bi-pencil-square me-2"></i>
+          </a>
           <a href="#" class="card-link">Another link</a>
         </div>
       </div>
