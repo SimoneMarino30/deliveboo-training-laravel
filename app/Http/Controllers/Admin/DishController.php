@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
+use App\Models\Restaurant;
 use App\Services\Dishes\DishesManager;
 use Illuminate\Http\Request;
 
@@ -89,9 +90,17 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(Request $request, $restaurant_id, Dish $dish)
     {
-        //
+        // ! CONTROLLARE PERCHè NON SALVA
+        $data = DishesManager::validationDishes($request->all());
+
+        if ($dish) $dish->update($data);
+        else abort(403, "accesso non autorizzato");
+
+
+        // Passo i parametri dell' url tramite array associativo
+        return redirect()->route('dishes.index', ['restaurant' => $restaurant_id, 'dish' => $dish]);
     }
 
     /**
