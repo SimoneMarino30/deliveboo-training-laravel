@@ -114,7 +114,7 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
-        return redirect()->route('restaurants.index')->with('message_content', 'Appartamento eliminato con successo') //with per passare variabile di sessione
-            ->with('message_type', 'danger');
+        //with per passare variabile di sessione
+        return redirect()->route('restaurants.index')->with('message_content', 'Ristorante eliminato con successo')->with('message_type', 'danger');
     }
 }
