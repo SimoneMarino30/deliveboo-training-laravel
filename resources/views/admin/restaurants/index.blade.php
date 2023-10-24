@@ -16,6 +16,7 @@
         <th scope="col">Foto</th>
         <th scope="col">creazione</th>
         <th scope="col">update</th>
+        <th scope="col">Typology</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -30,6 +31,16 @@
           <td>{{ $restaurant->photo }}</td>
           <td>{{ $restaurant->created_at }}</td>
           <td>{{ $restaurant->updated_at }}</td>
+          <td>
+            @forelse ($restaurant->typologies as $typology)
+              {{ $typology->name }} @unless ($loop->last)
+                ,
+              @else
+              @endunless
+            @empty
+              X
+            @endforelse
+          </td>
           <td class="text-wrap">
             {{-- piatti --}}
             <a class="" href="{{ route('dishes.index', $restaurant->id) }}"><i class="fa-solid fa-plate-wheat"></i>

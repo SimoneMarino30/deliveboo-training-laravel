@@ -60,4 +60,18 @@
                 <span>{{ $restaurant->updated_at }}</span>
               </p>
             </div>
+
+            <div class="col-4">
+              <p class="my-col-text">
+                <strong>Typologies::</strong>
+                @forelse ($restaurant->typologies as $typology)
+                  {{ $typology->name }} @unless ($loop->last)
+                    ,
+                  @else
+                  @endunless
+                @empty
+                  Nessun tag associato
+                @endforelse
+              </p>
+            </div>
           @endsection
