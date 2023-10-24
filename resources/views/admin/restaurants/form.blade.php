@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
   <h1>
     {{ $restaurant->id ? 'Modifica ristorante - ' . $restaurant->name : 'Aggiungi un nuovo ristorante' }}
   </h1>
@@ -73,7 +72,7 @@
           ➕ Tipologie
         </button>
 
-        {{-- ! Modal --}}
+        {{-- ! Modal Typologies --}}
         <div id="service-model" class="modal fade text-start" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
           aria-modal="true" role="dialog">
           <div class="modal-dialog modal-dialog-scrollable">
@@ -88,6 +87,7 @@
                   <label class="form-check-label d-block mb-2 @error('typologies') text-danger @enderror">
                     Tipologie:
                   </label>
+
                   <ul id="services_list">
                     @foreach ($typologies as $typology)
                       <li>
@@ -125,22 +125,6 @@
 
   {{-- ! CONTAINER STAMPA SERVIZI AGGIUNTIVI --}}
   <div id="servicesContainer" class="d-flex flex-column flex-wrap mt-3" style="max-height: 10rem"></div>
-  {{-- <div class="form-control @error('typologies') is-invalid @enderror p-0">
-    @foreach ($typologies as $typology)
-      <input type="checkbox" id="typology-{{ $typology->id }}" value="{{ $typology->id }}" name="typologies[]"
-        class="form-check-control" @if (in_array($typology->id, old('typology', $restaurant_typologies ?? []))) checked @endif>
-      <label for="typology-{{ $typology->id }}">
-        {{ $typology->name }}
-      </label>
-      <br>
-    @endforeach
-  </div>
-
-  @error('typologies')
-    <div class="invalid-feedback">
-      {{ $message }}
-    </div>
-  @enderror --}}
 
   <button type="submit" class="btn btn-primary">Salva</button>
 
@@ -164,8 +148,8 @@
       let serviceEl = document.createElement('div');
       serviceEl.innerHTML = `
             <input type="hidden" name="typologies[]" value="${typology.id}">
-            <i class="${typology.name}" aria-hidden="true"></i>
-            <span class="me-3 ">${typology.name}</span>
+            <span class="${typology.icon}" aria-hidden="true"></span>
+            <i class="me-3 ">${typology.name}</i>
         `;
       servicesContainer.appendChild(serviceEl);
     }
@@ -175,7 +159,7 @@
       let typology = {
         id: checkbox.value,
         name: checkbox.nextElementSibling.querySelector('span').textContent,
-        // icon: checkbox.nextElementSibling.querySelector('i').classList.value
+        icon: checkbox.nextElementSibling.querySelector('i').classList.value
       };
       addServiceToContainer(typology);
     });
@@ -189,7 +173,7 @@
           let typology = {
             id: checkbox.value,
             name: checkbox.nextElementSibling.querySelector('span').textContent,
-            // icon: checkbox.nextElementSibling.querySelector('i').classList.value
+            icon: checkbox.nextElementSibling.querySelector('i').classList.value
           };
           addServiceToContainer(typology);
         });
