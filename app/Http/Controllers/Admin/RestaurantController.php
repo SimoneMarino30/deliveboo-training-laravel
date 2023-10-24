@@ -115,6 +115,6 @@ class RestaurantController extends Controller
     {
         $restaurant->delete();
         //with per passare variabile di sessione
-        return redirect()->route('restaurants.index')->with('message_content', 'Ristorante eliminato con successo')->with('message_type', 'danger');
+        return redirect()->route('restaurants.index')->with('message_content', 'Ristorante ' . $restaurant->name . ' eliminato con successo')->with('message_type', 'danger');
     }
 }

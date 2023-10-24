@@ -112,6 +112,6 @@ class DishController extends Controller
     public function destroy($restaurant_id, Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('dishes.index', ['restaurant' => $restaurant_id, 'dish' => $dish])->with('message_content', 'Piatto eliminato con successo')->with('message_type', 'danger');
+        return redirect()->route('dishes.index', ['restaurant' => $restaurant_id, 'dish' => $dish])->with('message_content', 'Piatto ' . $dish->name . ' eliminato con successo')->with('message_type', 'danger');
     }
 }
