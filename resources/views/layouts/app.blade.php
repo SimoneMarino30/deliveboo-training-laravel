@@ -15,6 +15,8 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+  {{-- flag CDN --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
   <!-- Usando Vite -->
   @vite(['resources/js/app.js'])
 </head>
@@ -91,6 +93,7 @@
 
     <main class="container">
       @yield('content')
+
     </main>
     @yield('modals')
   </div>
