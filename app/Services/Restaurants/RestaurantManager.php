@@ -15,6 +15,7 @@ class RestaurantManager
         'address' => 'required|string|max:100',
         'piva' => 'required|string|max:12',
         'photo' => 'nullable|string|max:255',
+        'typologies' => 'nullable|exists:typologies,id',
       ],
       [
         'name.required' => 'il nome è obbligatorio',
@@ -31,6 +32,8 @@ class RestaurantManager
 
         'photo.string' => 'la foto deve essere una stringa',
         'photo.max' => 'la foto deve avere al massimo 255 catteri',
+
+        'typologies.exists' => 'Le tipologie selezionate non sono valide',
 
       ]
     )->validate();

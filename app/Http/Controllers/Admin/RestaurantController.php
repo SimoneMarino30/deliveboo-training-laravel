@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 // use App\Models\User;
 
 use App\Models\Restaurant;
+use App\Models\Typology;
 use App\Models\User;
 use App\Services\Restaurants\RestaurantManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -36,7 +38,8 @@ class RestaurantController extends Controller
     {
         $isEdit = false;
         $restaurant = new Restaurant();
-        return view('admin.restaurants.form', compact('restaurant', 'isEdit'));
+        $typologies = Typology::orderBy('id')->get();
+        return view('admin.restaurants.form', compact('restaurant', 'isEdit', 'typologies'));
     }
 
     /**
@@ -54,6 +57,8 @@ class RestaurantController extends Controller
         $restaurant->user_id = auth()->user()->id;
 
         $restaurant->save();
+
+        if (Arr::exists($data, "typologies")) $restaurant->typologies()->attach($data["typologies"]);
 
         return redirect()->route('restaurants.index')->with('message_content', 'Ristorante creato con successo');
     }
@@ -81,8 +86,11 @@ class RestaurantController extends Controller
         $user = Auth::user();
         if ($user->id === $restaurant->user_id) {
             $isEdit = true;
-            // dd($restaurant);
-            return view('admin.restaurants.form', compact('restaurant', 'isEdit'));
+
+            $typologies = Typology::orderBy('id')->get();
+            $restaurant_typologies = $restaurant->typologies->pluck('id')->toArray();
+
+            return view('admin.restaurants.form', compact('restaurant', 'isEdit', 'typologies', 'restaurant_typologies'));
         }
         abort(403, "accesso non autorizzato");
     }
@@ -99,8 +107,9 @@ class RestaurantController extends Controller
         $data = RestaurantManager::validationRestaurant($request->all());
         $id = $restaurant->id;
         $restaurant->update($data);
-        // dd($restaurant);
-        // dd($data);
+
+        if (Arr::exists($data, "typologies")) $restaurant->typologies()->sync($data["typologies"]);
+        else $restaurant->typologies()->detach();
 
         return redirect()->route('restaurants.show', $id);
     }

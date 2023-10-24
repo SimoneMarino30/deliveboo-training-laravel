@@ -31,19 +31,44 @@
     <div class="form-group">
       <label for="address">Indirizzo</label>
       <input type="text" name="address" id="address" class="form-control"
-        value="{{ old('address') ?? $restaurant->address }}" required>
+        value="{{ old('address') ?? $restaurant->address }}">
+      @error('address')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
     </div>
 
     <div class="form-group">
       <label for="piva">Partita IVA</label>
       <input type="text" name="piva" id="piva" class="form-control"
-        value="{{ $isEdit ? $restaurant->piva : old('piva') }}" required>
+        value="{{ $isEdit ? $restaurant->piva : old('piva') }}">
+      @error('piva')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
     </div>
 
     <div class="form-group">
       <label for="photo">Foto del Ristorante</label>
       <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*">
     </div>
+
+    <label class="form-label">Tags</label>
+
+    <div class="form-control @error('typologies') is-invalid @enderror p-0">
+      @foreach ($typologies as $typology)
+        <input type="checkbox" id="typology-{{ $typology->id }}" value="{{ $typology->id }}" name="typologies[]"
+          class="form-check-control" @if (in_array($typology->id, old('typology', $restaurant_typologies ?? []))) checked @endif>
+        <label for="typology-{{ $typology->id }}">
+          {{ $typology->name }}
+        </label>
+        <br>
+      @endforeach
+    </div>
+
+    @error('typologies')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+    @enderror
 
     <button type="submit" class="btn btn-primary">Salva</button>
 
