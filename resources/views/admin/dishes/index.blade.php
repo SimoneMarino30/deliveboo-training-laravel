@@ -65,7 +65,7 @@
             </a>
           </div>
           <div class="modal-body modal-bg">
-            Vuoi eliminare definitivamente il piatto? <br>
+            Vuoi eliminare definitivamente il piatto '{{ $dish->name }}'? <br>
             La risorsa non potrà essere recuperata
           </div>
           <div class="modal-footer modal-bg">

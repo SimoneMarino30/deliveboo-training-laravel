@@ -72,7 +72,7 @@
             </a>
           </div>
           <div class="modal-body modal-bg">
-            Vuoi eliminare definitivamente il ristorante? <br>
+            Vuoi eliminare definitivamente il ristorante '{{ $restaurant->name }}'? <br>
             La risorsa non potrà essere recuperata
           </div>
           <div class="modal-footer modal-bg">
