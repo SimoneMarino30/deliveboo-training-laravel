@@ -14,32 +14,41 @@
       <input class="form-control me-2" type="search" name="query" id="query" value="{{ Request::get('query') }}"
         placeholder="Search For Restaurant Name" aria-label="Search" />
     </form>
+    {{-- Crea --}}
+    <a href="{{ route('restaurants.create') }}" title="Crea">
+      <button class="btn btn-success">crea</button>
+      <i class="bi bi-pencil-square me-2"></i>
+    </a>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Nome</th>
+        <th scope="col">Piatti</th>
         <th scope="col">Indirizzo</th>
         <th scope="col">Partita iva</th>
-        <th scope="col">Foto</th>
-        <th scope="col">creazione</th>
-        <th scope="col">update</th>
         <th scope="col">Typology</th>
-        <th scope="col"></th>
+        <th scope="col">Foto</th>
+        <th scope="col">show</th>
+        <th scope="col">edit</th>
+        <th scope="col">elimina</th>
       </tr>
     </thead>
     <tbody>
 
       @foreach ($restaurants as $restaurant)
         <tr>
-          <th scope="row">{{ $restaurant->id }}</th>
           <td>{{ $restaurant->name }}</td>
+          <td scope="row">
+            {{-- piatti --}}
+            <a class="" href="{{ route('dishes.index', $restaurant->id) }}">
+              <button class="btn btn-primary">
+                <i class="fa-solid fa-plate-wheat"></i>
+              </button>
+            </a>
+          </td>
           <td>{{ $restaurant->address }}</td>
           <td>{{ $restaurant->piva }}</td>
-          <td>{{ $restaurant->photo }}</td>
-          <td>{{ $restaurant->created_at }}</td>
-          <td>{{ $restaurant->updated_at }}</td>
           <td>
             @forelse ($restaurant->typologies as $typology)
               {{ $typology->name }} @unless ($loop->last)
@@ -50,20 +59,26 @@
               X
             @endforelse
           </td>
-          <td class="text-wrap">
-            {{-- piatti --}}
-            <a class="" href="{{ route('dishes.index', $restaurant->id) }}"><i class="fa-solid fa-plate-wheat"></i>
+          <td>{{ $restaurant->photo }}</td>
+          <td>{{-- Dettaglio --}}
+            <a class="" href="{{ route('restaurants.show', $restaurant->id) }}">
+              <button class="btn btn-warning">
+                <i class="fa-solid fa-display"></i>
+              </button>
             </a>
-            {{-- Dettaglio --}}
-            <a class="" href="{{ route('restaurants.show', $restaurant->id) }}"><i class="fa fa-eye"></i></a>
-            {{-- Modifica --}}
+          </td>
+          <td>{{-- Modifica --}}
             <a href="{{ route('restaurants.edit', $restaurant->id) }}" title="Modifica">
-              <i class="fa fa-pencil me-2"></i>
+              <button class="btn btn-primary">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
             </a>
+          </td>
+          <td>
             {{-- Elimina --}}
-            <button class="bi bi-trash3-fill btn btn-danger" data-bs-toggle="modal"
-              data-bs-target="#delete-modal-{{ $restaurant->id }}" title="Elimina">
-              Elimina
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $restaurant->id }}"
+              title="Elimina">
+              <i class="fa-solid fa-trash"></i>
             </button>
           </td>
         </tr>
@@ -80,11 +95,6 @@
       </a>
     </div>
   @endif
-  {{-- Crea --}}
-  <a href="{{ route('restaurants.create') }}" title="Crea">
-    crea
-    <i class="bi bi-pencil-square me-2"></i>
-  </a>
 @endsection
 @section('modals')
   @foreach ($restaurants as $restaurant)
