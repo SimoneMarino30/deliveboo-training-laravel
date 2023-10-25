@@ -4,8 +4,17 @@
   <div class="container pt-5">
     {{-- messaggio creazione o cancellazione --}}
     @include('layouts.partials._session-message')
-  </div>
 
+  </div>
+  <div class="searchBar">
+    <form class="d-flex" method="GET" action="restaurants" role="search">
+      <button class="btn btn-outline-secondary" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <input class="form-control me-2" type="search" name="query" id="query" value="{{ Request::get('query') }}"
+        placeholder="Search For Restaurant Name" aria-label="Search" />
+    </form>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -61,6 +70,16 @@
       @endforeach
     </tbody>
   </table>
+  {{-- Messaggio empty research --}}
+  @if (isset($message))
+    <div class="alert alert-info d-flex justify-content-between">
+      {{ $message }}
+      <a href="{{ route('restaurants.index') }}" title="Back to the List">
+        <span>Back to List</span>
+        <i class="fa fa-arrow-left me-2"></i>
+      </a>
+    </div>
+  @endif
   {{-- Crea --}}
   <a href="{{ route('restaurants.create') }}" title="Crea">
     crea

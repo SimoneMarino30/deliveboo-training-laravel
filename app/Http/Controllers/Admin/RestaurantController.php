@@ -23,10 +23,18 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::all();
-        return view('admin.restaurants.index', compact('restaurants'));
+        // $restaurants = Restaurant::all();
+        // * RICERCA PER NOME
+        $query = $request->input('query'); // query per id e name form
+        $restaurants = Restaurant::where('name', 'LIKE', '%' . $query . '%')->get();
+        if ($restaurants->isEmpty()) {
+            $message = 'Empty research';
+            return view('admin.restaurants.index', compact('message', 'restaurants'));
+        } else {
+            return view('admin.restaurants.index', compact('restaurants'));
+        }
     }
 
     /**
