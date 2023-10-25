@@ -22,35 +22,40 @@ class RestaurantSeeder extends Seeder
                 'user_id' => 1, // ID utente associato
                 'name' => 'Ristorante Italiano',
                 'address' => 'Via Roma, 123, Milano',
-                'piva' => '12345678901',
+                'piva' => '204060801000',
+                'visible' => '1',
                 'photo' => 'url-dell-immagine-opzionale',
             ],
             [
                 'user_id' => 1, // Cambia l'ID utente se necessario
                 'name' => 'Ristorante Messicano',
                 'address' => 'Calle de la Rosa, 45, Città del Messico',
-                'piva' => '98765432104',
+                'piva' => '120365987431',
+                'visible' => '1',
                 'photo' => 'url-dell-immagine-opzionale',
             ],
             [
                 'user_id' => 1, // Cambia l'ID utente se necessario
                 'name' => 'Ristorante Giapponese',
                 'address' => 'Tokyo Street, 789, Tokyo',
-                'piva' => '24681357903',
+                'piva' => '023698741258',
+                'visible' => '1',
                 'photo' => 'url-dell-immagine-opzionale',
             ],
             [
                 'user_id' => 1, // Cambia l'ID utente se necessario
                 'name' => 'Ristorante Australiano',
                 'address' => 'jhonny , 12, Fairfield',
-                'piva' => '13579246801',
+                'piva' => '125478963201',
+                'visible' => '1',
                 'photo' => 'url-dell-immagine-opzionale',
             ],
             [
                 'user_id' => 1, // Cambia l'ID utente se necessario
                 'name' => 'Ristorante Cinese',
                 'address' => 'Wuling Road, 456, Pechino',
-                'piva' => '80246791352',
+                'piva' => '021569874123',
+                'visible' => '1',
                 'photo' => 'url-dell-immagine-opzionale',
             ],
         ];
@@ -61,6 +66,7 @@ class RestaurantSeeder extends Seeder
                 "name" => $restaurant["name"],
                 "address" => $restaurant["address"],
                 "piva" => $restaurant["piva"],
+                "visible" => $restaurant["visible"],
                 "photo" => $restaurant["photo"],
             ]);
         };

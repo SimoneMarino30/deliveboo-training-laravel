@@ -44,9 +44,9 @@
     @enderror
   </div>
 
-  <div class="form-group">
-    <label for="photo">Foto del Ristorante</label>
-    <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*">
+  <div class="mb-3">
+    <label for="formFileSm" class="form-label">Upload Foto</label>
+    <input class="form-control form-control-sm" id="formFileSm" type="file">
   </div>
 
   <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">

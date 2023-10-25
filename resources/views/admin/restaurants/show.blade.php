@@ -63,7 +63,7 @@
 
             <div class="col-4">
               <p class="my-col-text">
-                <strong>Typologies::</strong>
+                <strong>Typologies:</strong>
                 @forelse ($restaurant->typologies as $typology)
                   {{ $typology->name }} @unless ($loop->last)
                     ,
