@@ -26,9 +26,10 @@ class RestaurantController extends Controller
     public function index(Request $request)
     {
         // $restaurants = Restaurant::all();
+
         // * RICERCA PER NOME
         $query = $request->input('query'); // query per id e name form
-        $restaurants = Restaurant::where('name', 'LIKE', '%' . $query . '%')->get();
+        $restaurants = Restaurant::where('user_id', Auth::user()->id)->where('name', 'LIKE', '%' . $query . '%')->get();
         if ($restaurants->isEmpty()) {
             $message = 'Empty research';
             return view('admin.restaurants.index', compact('message', 'restaurants'));
