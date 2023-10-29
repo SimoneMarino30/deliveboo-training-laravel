@@ -43,7 +43,7 @@
             {{-- piatti --}}
             <a class="" href="{{ route('dishes.index', $restaurant->id) }}">
               <button class="btn btn-primary">
-                <i class="fa-solid fa-plate-wheat"></i>
+                Piatti
               </button>
             </a>
           </td>

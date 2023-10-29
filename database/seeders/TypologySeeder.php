@@ -57,7 +57,22 @@ class TypologySeeder extends Seeder
                 'name' => 'Thai',
                 'icon' => 'fi fi-th'
             ],
-
+            [
+                'name' => 'Meat',
+                'icon' => 'fa-solid fa-drumstick-bite'
+            ],
+            [
+                'name' => 'Fish',
+                'icon' => 'fa-solid fa-fish-fins'
+            ],
+            [
+                'name' => 'Vegetarian',
+                'icon' => 'fa-solid fa-leaf'
+            ],
+            [
+                'name' => 'Pizza',
+                'icon' => 'fa-solid fa-pizza-slice'
+            ],
         ];
 
         foreach ($typologies as $typology) {
