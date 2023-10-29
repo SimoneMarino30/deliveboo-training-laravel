@@ -59,15 +59,24 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-
+        // ! L'ARRAY TYPOLOGIES ARRIVA CON ID DUPLICATI
         $data = RestaurantManager::validationRestaurant($request->all());
+
+        // * Rimuove i duplicati dall'array typologies
+        if (Arr::exists($data, "typologies")) {
+            $data["typologies"] = array_unique($data["typologies"]);
+        }
+        // dd($data);
         $restaurant = new Restaurant;
+
         $restaurant->fill($data);
+
         $restaurant->user_id = auth()->user()->id;
 
         $restaurant->save();
 
         if (Arr::exists($data, "typologies")) $restaurant->typologies()->attach($data["typologies"]);
+
 
         return redirect()->route('restaurants.index')->with('message_content', 'Ristorante creato con successo');
     }
