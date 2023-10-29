@@ -14,7 +14,7 @@ class RestaurantManager
         'name' => 'required|string|max:100',
         'address' => 'required|string|max:100',
         'piva' => 'required|string|max:12',
-        'photo' => 'nullable|string|max:255',
+        'photo' => 'nullable|url',
         'typologies' => 'nullable|exists:typologies,id',
       ],
       [
@@ -30,8 +30,7 @@ class RestaurantManager
         'piva.max' => 'la partita IVA  deve avere al massimo 12 catteri',
         'piva.string' => 'la partita IVA deve essere una stringa numerica',
 
-        'photo.string' => 'la foto deve essere una stringa',
-        'photo.max' => 'la foto deve avere al massimo 255 catteri',
+        'photo.url' => 'la foto deve essere caricata tramite un URL valido',
 
         'typologies.exists' => 'Le tipologie selezionate non sono valide',
 

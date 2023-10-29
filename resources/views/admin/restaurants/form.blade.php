@@ -16,7 +16,7 @@
   @csrf
 
   <div class="form-group">
-    <label for="name">Nome del Ristorante</label>
+    <label for="name">restaurant's name</label>
     <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
       value="{{ $isEdit ? $restaurant->name : old('name') }}">
     @error('name')
@@ -27,7 +27,7 @@
 
 
   <div class="form-group">
-    <label for="address">Indirizzo</label>
+    <label for="address">Address</label>
     <input type="text" name="address" id="address" class="form-control"
       value="{{ old('address') ?? $restaurant->address }}">
     @error('address')
@@ -36,7 +36,7 @@
   </div>
 
   <div class="form-group">
-    <label for="piva">Partita IVA</label>
+    <label for="piva">VAT number</label>
     <input type="text" name="piva" id="piva" class="form-control"
       value="{{ $isEdit ? $restaurant->piva : old('piva') }}">
     @error('piva')
@@ -44,17 +44,24 @@
     @enderror
   </div>
 
-  <div class="mb-3">
-    <label for="formFileSm" class="form-label">Upload Foto</label>
-    <input class="form-control form-control-sm" id="formFileSm" type="file">
+  <div class="form-group">
+    <label for="photo">URL</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+      <input type="text" class="form-control" name="photo" id="photo" aria-describedby="basic-addon3"
+        value="{{ $isEdit ? $restaurant->photo : old('photo') }}">
+    </div>
+    @error('photo')
+      <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
   </div>
 
   <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
-    <label for="visibility" class="form-check-label">Pubblicato</label>
+    <label for="visible" class="form-check-label">Publish</label>
     <div class="form-check">
-      <input type="radio" name="visibility" id="visibility"
-        class="form-check-input @error('visibility') is-invalid @enderror" @checked(old('visibility', $restaurant->visibility)) value="1" />
-      @error('visibility')
+      <input type="radio" name="visible" id="visible" class="form-check-input @error('visible') is-invalid @enderror"
+        @checked(old('visible', $restaurant->visible)) />
+      @error('visible')
         <div class="invalid-feedback">
           {{ $message }}
         </div>
@@ -184,7 +191,7 @@
   {{-- VISIBILITY --}}
 
   <script type="text/javascript">
-    let allRadios = document.getElementsByName('visibility');
+    let allRadios = document.getElementsByName('visible');
     let booRadio;
     let x = 0;
     for (x = 0; x < allRadios.length; x++) {
