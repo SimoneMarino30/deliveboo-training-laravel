@@ -16,9 +16,9 @@
   </a>
   {{-- @dd($restaurant_id) --}}
   {{-- dish card --}}
-  <div class="d-flex flex-wrap" style="border: 2px dashed orange;">
+  <div class="d-flex flex-wrap">
     @foreach ($dishes as $dish)
-      <div class="card m-3" style="border: 2px dashed blue; width: 18rem">
+      <div class="card m-3">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ $dish->name }} - {{ $dish->id }}</h5>

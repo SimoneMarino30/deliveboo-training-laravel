@@ -27,6 +27,7 @@
         <th scope="col">Piatti</th>
         <th scope="col">Indirizzo</th>
         <th scope="col">Partita iva</th>
+        <th scope="col">Published</th>
         <th scope="col">Typology</th>
         <th scope="col">Foto</th>
         <th scope="col">show</th>
@@ -50,11 +51,19 @@
           <td>{{ $restaurant->address }}</td>
           <td>{{ $restaurant->piva }}</td>
           <td>
+            <span class="{{ $restaurant->visible ? 'text-success' : 'text-danger' }}">
+              {!! $restaurant->getIconHTML() !!}
+            </span>
+          </td>
+
+          <td>
             @forelse ($restaurant->typologies as $typology)
-              {{ $typology->name }} @unless ($loop->last)
+              <i class="{{ $typology->icon }}"></i>
+              {{ $typology->name }}
+              @unless ($loop->last)
                 ,
-              @else
               @endunless
+
             @empty
               X
             @endforelse
