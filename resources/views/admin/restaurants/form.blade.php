@@ -56,11 +56,11 @@
     @enderror
   </div>
 
-  <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
-    <label for="visible" class="form-check-label">Publish</label>
-    <div class="form-check">
+  <div class="form-group col-md-2 d-flex flex-column justify-content-center align-items-center">
+    <label for="visible">Publish</label>
+    <div class="input-group mb-3">
       <input type="radio" name="visible" id="visible" class="form-check-input @error('visible') is-invalid @enderror"
-        @checked(old('visible', $restaurant->visible)) />
+        @checked(old('visible', $restaurant->visible)) value="1" />
       @error('visible')
         <div class="invalid-feedback">
           {{ $message }}
@@ -147,6 +147,7 @@
   {{-- * Stampa icone tipologia aggiuntivi nel form create/edit --}}
 
   <script>
+    {{-- ! cambiare query selector --}}
     let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
     let servicesContainer = document.getElementById('servicesContainer');
 
@@ -154,7 +155,6 @@
     function addServiceToContainer(typology) {
       let serviceEl = document.createElement('div');
       serviceEl.innerHTML = `
-            <input type="hidden" name="typologies[]" value="${typology.id}">
             <span class="${typology.icon}" aria-hidden="true"></span>
             <i class="me-3 ">${typology.name}</i>
         `;

@@ -50,16 +50,17 @@
           </td>
           <td>{{ $restaurant->address }}</td>
           <td>{{ $restaurant->piva }}</td>
-          <td>
-            <span class="{{ $restaurant->visible ? 'text-success' : 'text-danger' }}">
-              {!! $restaurant->getIconHTML() !!}
-            </span>
+          <td class="text-center">
+            @if ($restaurant->visible == 1)
+              <i class="fa-solid fa-circle-check text-success"></i>
+            @else
+              <i class="fa-solid fa-circle-xmark text-danger"></i>
+            @endif
           </td>
-
-          <td>
+          <td style="min-width: 16rem">
             @forelse ($restaurant->typologies as $typology)
               <i class="{{ $typology->icon }}"></i>
-              {{ $typology->name }}
+              <span>{{ $typology->name }}</span>
               @unless ($loop->last)
                 ,
               @endunless
@@ -104,6 +105,7 @@
       </a>
     </div>
   @endif
+  {{-- <?php dd($restaurant); ?> --}}
 @endsection
 @section('modals')
   @foreach ($restaurants as $restaurant)

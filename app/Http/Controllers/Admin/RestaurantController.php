@@ -59,18 +59,20 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        // ! L'ARRAY TYPOLOGIES ARRIVA CON ID DUPLICATI
+        // * cambio da 'on' a boolean 0/1
+        // $visible = $request->input('visible');
+        // $visible = ($visible == 'on') ? 1 : 0;
+
         $data = RestaurantManager::validationRestaurant($request->all());
 
-        // * Rimuove i duplicati dall'array typologies
-        if (Arr::exists($data, "typologies")) {
-            $data["typologies"] = array_unique($data["typologies"]);
-        }
-        // dd($data);
+
+
         $restaurant = new Restaurant;
 
         $restaurant->fill($data);
 
+        $restaurant->visible = $request->has('visible') ? 1 : 0;
+        // dd($data);
         $restaurant->user_id = auth()->user()->id;
 
         $restaurant->save();
@@ -124,7 +126,9 @@ class RestaurantController extends Controller
     {
         $data = RestaurantManager::validationRestaurant($request->all());
         $id = $restaurant->id;
+        $restaurant->visible = $request->has('visible') ? 1 : 0;
         $restaurant->update($data);
+
 
         if (Arr::exists($data, "typologies")) $restaurant->typologies()->sync($data["typologies"]);
         else $restaurant->typologies()->detach();

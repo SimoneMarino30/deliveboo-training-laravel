@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,15 +30,5 @@ class Restaurant extends Model
     public function dish()
     {
         return $this->hasMany(Dish::class);
-    }
-
-    // Funzione che restituisce un icona html se visibile o meno
-    public function getIconHTML()
-    {
-        if ($this->visible == 1) {
-            return '<i class="fa-solid fa-circle-check"></i>';
-        } else {
-            return '<i class="fa-solid fa-circle-xmark"></i>';
-        }
     }
 }

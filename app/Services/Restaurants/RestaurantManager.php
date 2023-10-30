@@ -16,6 +16,7 @@ class RestaurantManager
         'piva' => 'required|string|max:12',
         'photo' => 'nullable|url',
         'typologies' => 'nullable|exists:typologies,id',
+        'visible' => 'nullable'
       ],
       [
         'name.required' => 'il nome è obbligatorio',
