@@ -42,7 +42,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $restaurant = Restaurant::where('id', $id)->get();
+        $restaurant = Restaurant::where('id', $id)->first();
 
         return response()->json($restaurant);
     }
