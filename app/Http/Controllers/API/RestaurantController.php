@@ -16,7 +16,11 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        return response()->json($restaurants);
+        return response()->json(
+            [
+                'restaurants' => $restaurants,
+            ]
+        );
     }
 
     /**
@@ -38,7 +42,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurant = Restaurant::where('id', $id)->get();
+
+        return response()->json($restaurant);
     }
 
     /**
